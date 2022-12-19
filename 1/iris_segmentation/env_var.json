@@ -1,0 +1,10 @@
+{
+    "eye_data_path": "./single_eye",
+    "train_image_dir_path": "./IMG",
+    "train_mask_dir_path": "./MASK",
+    "train_model_dir_path": "./Model",
+    "train_data_num": 8500,
+    "num_of_epoch": 10,
+    "eval_image_dir_path": "./IMG_Eval",
+    "eval_model_path": "./maskrcnn_50.pth"
+}
