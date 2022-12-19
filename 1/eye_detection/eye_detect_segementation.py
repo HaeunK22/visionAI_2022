@@ -12,9 +12,14 @@ from utils.general import check_img_size, check_requirements, non_max_suppressio
 from utils.plots import Annotator
 from utils.torch_utils import select_device
 
-FILE = 'IMG_5081'
-SOURCE = 'data/'+FILE+'.jpg'
-WEIGHTS = 'model/yolo.pt'
+import argparse
+parser = argparse.ArgumentParser(description='eye_detection')
+parser.add_argument('--data', help='data file name')
+args = parser.parse_args()
+
+FILE = args.data
+SOURCE = './data/'+FILE+'.jpg'
+WEIGHTS = './eye_detection/model/yolo.pt'
 IMG_SIZE = 640
 DEVICE = ''
 AUGMENT = False
@@ -49,7 +54,6 @@ def detect():
 
     # Load image
     img0 = cv2.imread(source)  # BGR
-    print("A")
     assert img0 is not None, 'Image Not Found ' + source
 
     # Padded resize
@@ -110,6 +114,6 @@ if __name__ == '__main__':
     for i in range(len(eyes)):
         imgs = img0[eyes[i, 1].astype(np.int64):eyes[i, 3].astype(np.int64), eyes[i, 0].astype(np.int64):eyes[i, 2].astype(np.int64)]
         if not os.path.isdir('result/' + FILE):
-            os.mkdir('result/' + FILE)
-        cv2.imwrite('result/' + FILE + '/result'+str(i)+'.jpg', imgs)
+            os.mkdir('../result/' + FILE)
+        cv2.imwrite('../result/' + FILE + '/result'+str(i)+'.jpg', imgs)
     print(eyes)
